@@ -15,10 +15,10 @@ public class Result implements Comparable<Result>{
         return candieIndexList;
     }
 
-    public Result(int totalNumOfCandies, int sum, List<Integer> candieIndexList) {
-        this.totalNumOfCandies = totalNumOfCandies;
+    public Result(int sum, List<Integer> candieIndexList) {
         this.sum = sum;
         this.candieIndexList = candieIndexList;
+        this.totalNumOfCandies = candieIndexList.size();
     }
 
     @Override

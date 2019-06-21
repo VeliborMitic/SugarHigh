@@ -32,10 +32,9 @@ public class Main {
         // Conversion from array to List
         List<Integer> candieList = Arrays.stream(candiesArray).boxed().collect(Collectors.toList());
 
+        // filter all possible candies to matrix
         int bound = candieList.size();
         int sum = 0;
-
-        // filter all possible results to matrix
         int[][] resultMatrix = new int[bound][bound];
         for (int i = 0; i < bound; i++) {
             for (int j = i; j < bound; j++) {
@@ -47,32 +46,29 @@ public class Main {
             sum = 0;
         }
 
-        // possible results from result matrix to Result objects
-        List<Result> listOfResults = new ArrayList<>();
+        // possible results from result matrix to model.Result objects
+        List<Result> resultList = new ArrayList<>();
         List<Integer> elements = new ArrayList<>();
         sum = 0;
-        int elementCount = 0;
 
         for (int[] matrix : resultMatrix) {
             for (int i = 0; i < resultMatrix.length; i++) {
                 int element = matrix[i];
                 if (element != 0) {
                     sum += element;
-                    elementCount++;
                     elements.add(candieList.indexOf(element));
                 }
             }
-            listOfResults.add(new Result(elementCount, sum, new ArrayList<>(elements)));
+            resultList.add(new Result(sum, new ArrayList<>(elements)));
             sum = 0;
-            elementCount = 0;
             elements.clear();
         }
 
         // sorting model.Result objects with chained comparator
-        listOfResults.sort(Comparator.comparing(Result::getTotalNumOfCandies)
+        resultList.sort(Comparator.comparing(Result::getTotalNumOfCandies)
                 .thenComparing(Result::compareTo).reversed());
 
         // return indexes of candies from original list
-        return listOfResults.get(0).getCandieIndexList();
+        return resultList.get(0).getCandieIndexList();
     }
 }
