@@ -31,6 +31,8 @@ public class Main {
 
         // Conversion from array to List
         List<Integer> candieList = Arrays.stream(candiesArray).boxed().collect(Collectors.toList());
+        List<Result> resultList = new ArrayList<>();
+        List<Integer> elements = new ArrayList<>();
 
         // filter all possible candies to matrix
         int bound = candieList.size();
@@ -47,10 +49,6 @@ public class Main {
         }
 
         // possible results from result matrix to model.Result objects
-        List<Result> resultList = new ArrayList<>();
-        List<Integer> elements = new ArrayList<>();
-        sum = 0;
-
         for (int[] matrix : resultMatrix) {
             for (int i = 0; i < resultMatrix.length; i++) {
                 int element = matrix[i];
