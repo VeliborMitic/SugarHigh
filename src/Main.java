@@ -34,7 +34,7 @@ public class Main {
         List<Result> resultList = new ArrayList<>();
         List<Integer> elements = new ArrayList<>();
 
-        // filter all possible candies to matrix
+        // map all possible results to matrix
         int bound = candieList.size();
         int sum = 0;
         int[][] resultMatrix = new int[bound][bound];
@@ -48,7 +48,7 @@ public class Main {
             sum = 0;
         }
 
-        // possible results from result matrix to model.Result objects
+        // map possible results from result matrix to model.Result objects
         for (int[] matrix : resultMatrix) {
             for (int i = 0; i < resultMatrix.length; i++) {
                 int element = matrix[i];
